@@ -1,0 +1,27 @@
+.image-popover {
+    .fullscreen-image {
+        width: 100%;
+    height: auto;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    overflow: auto;
+    position: fixed;
+    right: 0;
+    top: 0;
+    }
+  .slide-zoom {
+    height: 100%;
+  }
+}
+
+.transparent {
+  background: rgba(0,0,0,0.8);
+}
+
+.image-modal {
+    width: 100% !important;
+    height: 100%;
+    top: 0 !important;
+    left: 0 !important;
+}

@@ -1,0 +1,95 @@
+<!--
+  Generated template for the MovieDetailsPage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+	<ion-navbar>
+		<ion-title>{{tv.name}}</ion-title>
+	</ion-navbar>
+</ion-header>
+<ion-content padding class="tv-details" [ngStyle]="{'background-image': 'url(' + bgurl + ')',
+'background-repeat': 'no-repeat', 'background-size': '100%'}">
+	<ion-card>
+		<ion-card-content>
+			<img [ngStyle]="{'max-width': '100px','height': '150px',
+        'width': '150px',
+        'margin-top': '-120px',
+        'float': 'left',
+        'border': 'solid 4px #FFFFFF',
+        'display': 'float'}" src="{{baseImageUrl}}{{tv.poster_path}}" (click)="openImage()" onError="this.src='assets/img/noimage.png'"
+			/>
+			<br style="clear: both;" />
+			<div [ngStyle]="{'font-weight': '600'}">{{tv.name}} {{tvYear}}</div>
+			<p>{{genres}}</p>
+			<p>Show Type: {{tv.type}}</p>
+			<p [hidden]="shouldHideWebChannel"> {{channelName}} {{countryCode}}</p>
+			<p [hidden]="shouldHideNetwork"> {{networkName}} {{countryCode}}</p>
+		</ion-card-content>
+		<ion-list padding>
+			<p>First Air Date: {{tv.first_air_date}}</p>
+			<p>Last Air Date: {{tv.last_air_date}}</p>
+			<p [hidden]="shouldHideSchedule"> {{airsOnDay}} {{airsAtTime}}</p>
+			<p>Rating
+				<ion-icon name="star"></ion-icon>: {{tv.vote_average}}/10 ({{tv.vote_count}} votes)</p>
+			<p>Status: {{tv.status}}</p>
+			<p>No. of Seasons: {{tv.number_of_seasons}}</p>
+			<p>No of Episodes: {{tv.number_of_episodes}}</p>
+			<p>Episode Runtime: {{tv.episode_run_time}} mins</p>
+			<p><a href="{{tv.homepage}}">Website</a></p>
+		</ion-list>
+		<ion-row>
+			<button ion-button full small color="dark" block round (click)="viewSeasonDetail(seasons)">Seasons</button>
+		</ion-row>
+		<img src="{{baseBigImageUrlBig}}{{tv.backdrop_path}}" (click)="viewBackdrops(backdrops)" onError="this.src='assets/img/noimage.png'">
+		<ion-list padding font-size="0.2em">
+			<p>{{tv.overview}}</p>
+		</ion-list>
+		<ion-list [hidden]="shouldHideNextEpisode">
+			<ion-item-divider [ngStyle]="{'color': 'black', 'font-weight': 'bold'}">
+				Next Episode
+			</ion-item-divider>
+			<ion-card [ngStyle]="{'margin-top': '1px'}">
+				<ion-card-header>
+					{{nextEpisodeName}} <br> Episode {{nextEpisodeSeason}}x{{nextEpisodeNumber}}; {{nextEpisodeAirDate|date:"MMM dd, yyyy"}}
+				</ion-card-header>
+				<ion-card-content>
+					<span [innerHtml]="nextEpisodeSummary"></span>
+				</ion-card-content>
+			</ion-card>
+		</ion-list>
+		<ion-list [hidden]="!shouldHide">
+			<ion-item-divider [ngStyle]="{'color': 'black', 'font-weight': 'bold'}">
+				Top Billed Cast
+			</ion-item-divider>
+			<ion-row *ngFor="let i of castRows;">
+				<ion-col *ngFor="let cast of casts | slice:(i*4):(i+1)*4; let t=index" (click)="goToTVDetail(tv)">
+					<template [ngIf]="i<=4">
+						<img [ngStyle]="{'min-height': '100px'}" src="{{baseImageUrl}}{{cast.profile_path}}" (click)="goToCastDetail(cast)" onError="this.src='assets/img/blank_img.jpg'">
+						<p>{{cast.name}}
+							<p>
+					</template>
+				</ion-col>
+			</ion-row>
+			<button ion-button small full color="primary" (click)="viewCastDetail(casts)">Full Cast & Crew</button>
+		</ion-list>
+		<ion-list>
+			<button ion-button small full  icon-left color="primary" class="item-icon-left" (click)="readMore()">
+				<ion-icon name="logo-google"></ion-icon>
+				Read More...
+				</button>
+		</ion-list>
+	</ion-card>
+
+	<ion-fab right bottom>
+		<button id="morebtn" ion-fab class="slide-in" color="primary"><ion-icon name="more"></ion-icon></button>
+		<!--<div class="mdl-tooltip" for="morebtn" >More info...</div>-->
+		<ion-fab-list side="left">
+			<button ion-fab color="golden" (click)="viewCastDetail(casts)"><ion-icon name="people"></ion-icon></button>
+			<button ion-fab color="royal" (click)="viewBackdrops(backdrops)"><ion-icon name="md-images"></ion-icon></button>
+			<button ion-fab color="dark" (click)="viewSimilar(similar)"><ion-icon name="film"></ion-icon></button>
+			<button ion-fab color="youtube" (click)="viewTrailers(videos)"><ion-icon name="logo-youtube"></ion-icon></button>
+		</ion-fab-list>
+	</ion-fab>
+</ion-content>

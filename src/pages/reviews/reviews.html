@@ -1,0 +1,29 @@
+<!--
+  Generated template for the Reviews page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Reviews</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <ion-col *ngFor="let review of reviews">
+    <ion-card>
+      <ion-card-header [ngStyle]="{'background-color': 'black','color': 'white'}">
+        Review By {{review.author}}
+      </ion-card-header>
+      <ion-card-content>
+        <span font-size="5px" [innerHtml]="review.content"></span>
+        <!--<p font-size="5px">
+          {{review.content}}
+        </p>-->
+      </ion-card-content>
+    </ion-card>
+  </ion-col>
+</ion-content>

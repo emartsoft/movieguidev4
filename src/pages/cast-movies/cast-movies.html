@@ -1,0 +1,40 @@
+<!--
+  Generated template for the SimilarMoviesPage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+<ion-navbar>
+  <ion-title>Cast Movies</ion-title>
+</ion-navbar>
+</ion-header>
+<ion-content padding class="cast-movies">
+      <!-- Spinning icon when loading -->
+    <!--<p text-center>
+        <ion-spinner [hidden]="!isLoading" icon="spiral"></ion-spinner>
+    </p>-->
+    <!--TV Shows Airing Today -->
+    {{castName}} Movies
+    <ion-row *ngFor="let i of movieRows;">
+        <ion-col *ngFor="let movie of castMovies | slice:(i*4):(i+1)*4; let t=index" (click)="goToMovieDetail(movie)">
+            <template [ngIf]="i<50">
+                <img src="{{baseImageUrl}}{{movie.poster_path}}" onError="this.src='assets/img/noimage.png'">
+            </template>
+        </ion-col>
+    </ion-row>
+    <!--Latest Movies in Theatre -->
+    {{castName}} TV Shows
+    <ion-row *ngFor="let i of tvRows;">
+        <ion-col *ngFor="let tv of castTvShows | slice:(i*4):(i+1)*4; let t=index" (click)="goToTVDetail(tv)">
+            <template [ngIf]="i<50">
+                <img src="{{baseImageUrl}}{{tv.poster_path}}" onError="this.src='assets/img/noimage.png'">
+            </template>
+        </ion-col>
+    </ion-row>
+
+    <div>
+        Powered By
+        <img src="assets/img/tmdb.png" width="30%" align="right">
+    </div>
+</ion-content>

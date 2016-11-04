@@ -1,0 +1,125 @@
+<!--
+  Generated template for the MovieDetailsPage page.
+,  
+  '-webkit-filter':'blur(10px)',
+  '-moz-filter':'blur(10px)',
+  '-o-filter':'blur(10px)',
+  '-ms-filter':'blur(10px)',
+  'filter':'blur(10px)'
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding class="movie-details" [ngStyle]="{'background-image': 'url(' + bgurl + ')', 
+'background-repeat': 'no-repeat', 'background-size': '100%'}">
+  <ion-card [ngStyle]="{'z-index':'1'}">
+    <ion-card-content>
+      <img [ngStyle]="{'max-width': '100px','height': '150px',
+        'width': '150px',
+        'margin-top': '-120px',
+        'float': 'left',
+        'border': 'solid 4px #FFFFFF',
+        'display': 'float'}" src="{{baseImageUrl}}{{movie.poster_path}}" (click)="openImage()" onError="this.src='assets/img/noimage.png'"
+      />
+      <br style="clear: both;" />
+      <div>{{title}} {{movieYear}}</div>
+      <p style="text-align='right'">{{genres}}</p>
+      <p>Status: {{movie.status}}</p>
+      <ion-grid>
+        <ion-row>
+          <ion-col width-25 (click)="viewMetacritic()">
+            <img [ngStyle]="{'max-width': '35px','height': '35px'}" src="assets/img/ratings/metacritic.png" />
+            <div [ngStyle]="{'background-color': metaScoreColor}" class="metabg">{{metaScore}}</div>
+            <p>Metacritic</p>
+          </ion-col>
+          <ion-col width-32 (click)="viewTomato()">
+            <img [ngStyle]="{'max-width': '35px','height': '35px'}" src="assets/img/ratings/{{tomatoImage}}.png" onError="this.src='assets/img/ratings/rottentomatoes.png'"
+            />
+            <div class="metabg1">{{tomatoMeter}}</div>
+            <p font-size="5px">Tomatometer</p>
+          </ion-col>
+          <ion-col width-20>
+            <img [ngStyle]="{'max-width': '35px','height': '35px'}" src="assets/img/ratings/{{flixsterImage}}.png" onError="this.src='assets/img/ratings/flixster.png'"
+              (click)="viewTomato()" />
+            <div class="metabg1">{{flixster}}</div>
+            <p>Flixster</p>
+          </ion-col>
+          <ion-col width-20 (click)="viewIMDB()">
+            <img [ngStyle]="{'max-width': '35px','height': '35px'}" src="assets/img/ratings/imdb.png" />
+            <div class="metabg1">{{imdb}}</div>
+            <p>IMDb</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+    <ion-list padding font-size="0.2em">
+      <p>Runtime: {{movie.runtime}} mins</p>
+      <p>Budget: {{movie.budget | currency:'USD':true}}</p>
+      <p>Revenue: {{movie.revenue | currency:'USD':true}}</p>
+      <p>Release Date: {{movie.release_date}}</p>
+      <!--| date:"MM/dd/yy"-->
+      <p>Language: {{movie.original_language}}</p>
+      <!--<p>Rating: {{movie.vote_average}}/10 ({{movie.vote_count}} votes)</p>-->
+      <p><a href="{{movie.homepage}}">Website</a></p>
+    </ion-list>
+    <!--<ion-row padding>
+      <button ion-button padding full small color="dark" round (click)="viewCastDetail(casts)">Cast</button>
+      <button ion-button padding full small color="dark" round (click)="viewBackdrops(backdrops)">Backdrop</button>
+      <button ion-button padding full small color="dark" round (click)="viewSimilar(similar)">Similar</button>
+      <button ion-button padding full small color="dark" round (click)="viewTrailers(videos)">Trailers</button>
+    </ion-row>-->
+    <img src="{{baseBigImageUrlBig}}{{movie.backdrop_path}}" (click)="viewBackdrops(backdrops)" onError="this.src='assets/img/noimage.png'">
+    <ion-list padding font-size="0.2em">
+      Tagline
+      <p><i>{{movie.tagline}}</i></p>
+      Synopsis
+      <p [innerHTML]="movie.overview"></p>
+      Production Companies
+      <ion-row>
+        <p>{{productioncompanies}}</p>
+      </ion-row>
+      Director(s)
+      <p [innerHTML]="director"></p>
+      Writer(s)
+      <p [innerHTML]="writer"></p>
+
+    </ion-list>
+
+    <ion-list [hidden]="!shouldHide">
+      <ion-item-divider>
+        Top Billed Cast
+      </ion-item-divider>
+      <ion-row *ngFor="let i of castRows;">
+        <ion-col *ngFor="let cast of casts | slice:(i*4):(i+1)*4; let t=index" (click)="goToTVDetail(tv)">
+          <template [ngIf]="i<=4">
+            <img [ngStyle]="{'min-height': '100px'}" src="{{baseImageUrl}}{{cast.profile_path}}" (click)="goToCastDetail(cast)" onError="this.src='assets/img/blank_img.jpg'">
+            <p>{{cast.name}}
+              <p>
+          </template>
+        </ion-col>
+      </ion-row>
+      <button ion-button small full color="primary" (click)="viewCastDetail(casts)">Full Cast & Crew</button>
+    </ion-list>
+    <ion-list>
+      <button ion-button small full color="primary" (click)="viewReviews()">Reviews</button>
+      <button ion-button small full color="primary" (click)="readMore()">Read More...</button>
+    </ion-list>
+  </ion-card>
+  <ion-fab right bottom>
+    <button ion-fab class="slide-in" color="primary"><ion-icon name="more"></ion-icon></button>
+    <ion-fab-list side="left">
+      <button ion-fab color="golden" (click)="viewCastDetail(casts)"><ion-icon name="people"></ion-icon></button>
+      <button ion-fab color="royal" (click)="viewBackdrops(backdrops)"><ion-icon name="md-images"></ion-icon></button>
+      <button ion-fab color="dark" (click)="viewSimilar(similar)"><ion-icon name="film"></ion-icon></button>
+      <button ion-fab color="danger" (click)="viewTrailers(videos)"><ion-icon name="logo-youtube"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+  <!--Backdrops
+      <ion-scroll scrollX="true" [ngStyle]="{'background-color': 'white','height':'105px', 'min-height': '100px', 'overflow': 'scroll', 'white-space': 'nowrap'}">
+            <img *ngFor="let backdrop of backdrops" src="{{baseImageUrl}}{{backdrop.file_path}}" style="height:100px; padding: 2px 2px 2px 2px;"> 
+      </ion-scroll>-->
+</ion-content>

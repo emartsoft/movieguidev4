@@ -1,0 +1,23 @@
+.tv-shows-airing-today {
+  background: #000;
+  color: #DDD;
+
+       p{
+      color: #DDD;
+      font-size: 8px;
+      text-align: center;
+  }
+}
+
+td {padding: 10px; border: 1px #DDD solid;}
+
+attributionimage{
+    width: 10vh;
+    height: 40%;
+}
+
+
+// Related to https://github.com/driftyco/ionic/issues/5055
+.ios .hide-border .toolbar-background {
+  border-bottom-color: transparent;
+}

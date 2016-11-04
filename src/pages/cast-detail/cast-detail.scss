@@ -1,0 +1,74 @@
+.cast-detail {
+   background: #000;
+
+   .slider-pager-page {
+  color: black !important;
+  background-color: blue;
+}
+
+.slider-pager-page.active {
+  color: darkgoldenrod !important;
+  background-color: blue;
+}
+      ion-card {
+
+    margin-top: 60px;
+    overflow: visible;
+
+    ion-card-content {
+
+      background-color: map-get($colors, primary);
+      color: #FFFFFF;
+      text-align: center;
+      padding-bottom: 20px;
+
+      img {
+        height: 150px;
+        width: 100px;
+        border-radius: 46px;
+        margin-top: -80px;
+        border: solid 2px #FFFFFF;
+        display: inline;
+      }
+
+      h2 {
+        font-size: 2.5rem;
+        margin-top: .5rem;
+        color: white;
+      }
+
+      h3 {
+        font-size: 1.8rem;
+        color: white;
+      }
+
+      h4 {
+        font-size: 1.5rem;
+        color: white;
+      }
+
+      h5{
+        font-size: 1.3rem;
+        color: white;
+      }
+
+       p{
+        font-size: 0.5rem;
+        text-align: center;
+      }
+
+    }
+
+  }
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+}
+
+ion-scroll {
+  white-space: nowrap;
+  height: 150px
+}
+

@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-navbar class="hide-border">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Genres</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="movie-genres">
+  <!--<ion-row *ngFor="let i of genreRows;">-->
+     <!--| slice:(i*2):(i+1)*2; let t=index-->
+    <a *ngFor="let genre of genres">
+      <button ion-button round (click)="viewMovieGenres(genre)">{{genre.name}}</button>
+    </a>
+  <!--</ion-row>-->
+</ion-content>

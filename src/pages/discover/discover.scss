@@ -1,0 +1,30 @@
+.discover {
+      background: #000;
+  color: #DDD;
+  
+    .ion-label{
+        color: black;
+    }
+}
+
+.item-select select {
+    -moz-appearance: none;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    max-width: 100%;
+    background: #FFF none repeat scroll 0% 0%;
+    color: #333;
+    text-indent: 0.01px;
+    text-overflow: "";
+    white-space: nowrap;
+    font-size: 14px;
+    cursor: pointer;
+    direction: rtl;
+}
+
+.item-select {
+        max-width: 100%;
+  margin: 0 0 0 0;
+}

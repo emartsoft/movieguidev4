@@ -1,0 +1,53 @@
+<!--
+  Generated template for the CastDetailPage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{cast.name}}</ion-title>
+    <ion-buttons start>
+      <button ion-button outline (click)="loadCastMoviesAndTVShowsAsCast()">
+      As Cast
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button ion-button outline (click)="loadCastMoviesAndTVShowsAsCrew()">
+        As Crew
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding class="cast-detail">
+  <ion-card>
+    <ion-card-content>
+      <img item-center src="{{baseImageUrl}}{{cast.profile_path}}" onError="this.src='assets/img/blank_img.jpg'" />
+      <h4>{{cast.name}}</h4>
+      <h5>DOB: {{cast.birthday}}</h5>
+      <h5>Birth Place: {{cast.place_of_birth}}</h5>
+    </ion-card-content>
+    <div [ngStyle]="{'text-align':'center'}">
+      <button ion-button outline full small (click)="readMore(imdburl)">Read More</button>
+      <!-- *ngIf="{{cast.imdb_id}}!=''"<ion-row ><a href="http://www.imdb.com/name/nm1231899/">Read More</a></ion-row>-->
+    </div>
+    <ion-list>
+
+      <p [ngStyle]="{'text-align':'center','font-weight':'bold'}" ion-item>Biography</p>
+      <p padding [innerHTML]="cast.biography"></p>
+
+      <p [ngStyle]="{'text-align':'center','font-weight':'bold'}" ion-item>Profile Images</p>
+      <ion-slides #mySlider [options]="mySlideOptions" pager style="height:220px; border:2px solid white">
+        <ion-slide *ngFor="let other of otherImages">
+          <img src="{{baseImageUrl}}{{other.file_path}}" (click)="openImage($index)" onError="this.src='assets/img/noimage.png'" style="height:150px; padding: 2px 2px 2px;"
+          />
+        </ion-slide>
+      </ion-slides>
+      <div [ngStyle]="{'text-align':'center'}">
+        <ion-icon name="swap"></ion-icon>
+      </div>
+      <ion-row></ion-row>
+    </ion-list>
+  </ion-card>
+</ion-content>

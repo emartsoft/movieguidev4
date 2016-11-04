@@ -1,0 +1,83 @@
+<ion-header>
+	<ion-navbar [attr.primary]="isAndroid ? '' : null" no-border-top>
+		<button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+		<ion-segment [(ngModel)]="media">
+			<ion-segment-button value="tv">
+				TV Shows Today
+			</ion-segment-button>
+			<ion-segment-button value="movies">
+				Movies in Theatre
+			</ion-segment-button>
+		</ion-segment>
+	</ion-navbar>
+</ion-header>
+<ion-content padding class="homepage">
+	<!--<ion-refresher (starting)="doStarting()" (refresh)="doRefresh($event, refresher)" (pulling)="doPulling($event, amt)">
+    </ion-refresher>-->
+	<div [ngSwitch]="media">
+
+		<div *ngSwitchCase="'tv'">
+			<ion-row style="background-color: black; color: white;">
+
+				<ion-col style="padding: 8px" width-80>
+					TV Shows Airing Today
+				</ion-col>
+				<ion-col width-10>
+					<button ion-button small (click)="previousPageTV()"><ion-icon name="arrow-dropleft"></ion-icon></button>
+				</ion-col>
+				<ion-col width-10>
+					<button ion-button small (click)="nextPageTV()"><ion-icon name="arrow-dropright"></ion-icon></button>
+				</ion-col>
+			</ion-row>
+			<ion-row *ngFor="let i of tvRows;">
+				<ion-col *ngFor="let tv of tvAiringTodayFound | slice:(i*3):(i+1)*3; let t=index" (click)="goToTVDetail(tv)">
+					<template [ngIf]="i<6">
+						<img src="{{baseImageUrl}}{{tv.poster_path}}" onError="this.src='assets/img/noimage.png'">
+						<p>{{tv.name}}
+							<p>
+					</template>
+				</ion-col>
+			</ion-row>
+
+		</div>
+
+		<div *ngSwitchCase="'movies'">
+			<ion-row style="background-color: black; color: white;">
+				<ion-col style="padding: 8px" width-80>
+					Latest Movies in Theatre
+				</ion-col>
+				<ion-col width-10>
+					<button ion-button small (click)="previousPageMovie()"><ion-icon name="arrow-dropleft"></ion-icon></button>
+				</ion-col>
+				<ion-col width-10>
+					<button ion-button small (click)="nextPageMovie()"><ion-icon name="arrow-dropright"></ion-icon></button>
+				</ion-col>
+			</ion-row>
+			<ion-row *ngFor="let i of movieRows;">
+				<ion-col *ngFor="let movie of latestMoviesFound | slice:(i*3):(i+1)*3; let t=index" (click)="goToMovieDetail(movie)">
+					<template [ngIf]="i<6">
+						<img src="{{baseImageUrl}}{{movie.poster_path}}" onError="this.src='assets/img/noimage.png'">
+						<p>{{movie.title}}
+							<p>
+					</template>
+				</ion-col>
+			</ion-row>
+			<!--<ion-fab center bottom>
+				<button ion-fab color="primary"><ion-icon name="ios-hand-outline"></ion-icon></button>
+				<ion-fab-list side="left">
+					<button ion-fab (click)="previousPage()"><ion-icon name="arrow-dropleft"></ion-icon></button>
+				</ion-fab-list>
+				<ion-fab-list side="right">
+					<button ion-fab (click)="nextPage()"><ion-icon name="arrow-dropright" ></ion-icon></button>
+				</ion-fab-list>
+			</ion-fab>-->
+		</div>
+	</div>
+
+	<div>
+		Powered By
+		<img src="assets/img/tmdb.png" width="30%" align="right">
+	</div>
+</ion-content>

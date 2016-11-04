@@ -1,0 +1,164 @@
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+		<ion-title>About</ion-title>
+		<ion-buttons end>
+			<button ion-fab (click)="presentPopover($event)">
+			<ion-icon name="md-share"></ion-icon>
+		 </button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+<ion-content padding class="about-page">
+	<ion-item>Movie-TV Guide Info</ion-item>
+
+	<ion-card>
+		<ion-card-header [ngStyle]="{'background-color': 'black','color': 'white'}">
+			App Info
+		</ion-card-header>
+		<ion-card-content>
+			<ion-row padding>Version: {{versionNo}}</ion-row>
+			<button ion-button padding full color="primary" (click)="rateApp()">Rate App</button>
+		</ion-card-content>
+	</ion-card>
+
+	<ion-row padding>
+		Movie Guide is a movie app made is a movie, TV Shows mobile application to allow you get relevant information. The application
+		is able to display movie ratings from major sources such as TMDb, Rotten Tomatoes, IMDb and Metacritic. The main features
+		of the app are:
+	</ion-row>
+
+	<ion-card>
+		<ion-card-header [ngStyle]="{'background-color': 'black','color': 'white'}">
+			<ion-icon name='filing' item-left></ion-icon>
+			Discovering
+		</ion-card-header>
+		<ion-card-content>
+			Discover movies or TV shows by different types of data like average rating, number of votes, genres and year.
+		</ion-card-content>
+	</ion-card>
+
+	<ion-card>
+		<ion-card-header [ngStyle]="{'background-color': 'black','color': 'white'}">
+			<ion-icon name='timer' item-left></ion-icon>
+			TV Shows Airing Today
+		</ion-card-header>
+		<ion-card-content>
+			Listing of TV shows that air today.
+		</ion-card-content>
+	</ion-card>
+
+	<ion-card>
+		<ion-card-header [ngStyle]="{'background-color': 'black','color': 'white'}">
+			<ion-icon name='calendar' item-left></ion-icon>
+			Latest Movies in Theatre Now
+		</ion-card-header>
+		<ion-card-content>
+			Listing of movies playing that have been, or are being released this week.
+		</ion-card-content>
+	</ion-card>
+
+	<ion-card>
+		<ion-card-header [ngStyle]="{'background-color': 'black','color': 'white'}">
+			<ion-icon name='star' item-left></ion-icon>
+			Popular Movies
+		</ion-card-header>
+		<ion-card-content>
+			Listing of popular movies on The Movie Database.
+		</ion-card-content>
+	</ion-card>
+
+	<ion-card>
+		<ion-card-header [ngStyle]="{'background-color': 'black','color': 'white'}">
+			<ion-icon name='timer' item-left></ion-icon>
+			Upcoming TV Shows
+		</ion-card-header>
+		<ion-card-content>
+			Listing of TV shows that are currently on the air or has an episode with an air date in the next 7 days.
+		</ion-card-content>
+	</ion-card>
+
+	<ion-card>
+		<ion-card-header [ngStyle]="{'background-color': 'black','color': 'white'}">
+			<ion-icon name='bookmarks' item-left></ion-icon>
+			Popular TV Shows
+		</ion-card-header>
+		<ion-card-content>
+			Listing of popular TV shows.
+		</ion-card-content>
+	</ion-card>
+
+	<ion-card>
+		<ion-card-header [ngStyle]="{'background-color': 'black','color': 'white'}">
+			<ion-icon name='easel' item-left></ion-icon>
+			TV and Movie Listings by Genre
+		</ion-card-header>
+		<ion-card-content>
+			Listing Movies and TV shows categorized by genre.
+		</ion-card-content>
+	</ion-card>
+
+	<ion-card>
+		<ion-card-header [ngStyle]="{'background-color': 'black','color': 'white'}">
+			<ion-icon name='people' item-left></ion-icon>
+			Popular People and Search
+		</ion-card-header>
+		<ion-card-content>
+			Listing of popular people and ability to search cast/crew for which this refreshes every day on The Movie Database.
+		</ion-card-content>
+	</ion-card>
+
+	<ion-card>
+		<ion-card-header [ngStyle]="{'background-color': 'black','color': 'white'}">
+			<ion-icon name='play' item-left></ion-icon>
+			Trailers
+		</ion-card-header>
+		<ion-card-content>
+			The app provides links to trailers of movies.
+		</ion-card-content>
+	</ion-card>
+
+	<ion-item>API Usage</ion-item>
+	<ion-card>
+		<ion-card-header [ngStyle]="{'background-color': 'black','color': 'white'}">
+			TMDb Api
+		</ion-card-header>
+		<ion-card-content>
+			The movie info displayed in this app is fetched from TMDb <a href="http://www.themoviedb.org/">TMDb Website</a> This product
+			uses the TMDb API but is not endorsed or certified by TMDb
+			<ion-row><a href="https://www.themoviedb.org/terms-of-use/">TMDb Terms</a></ion-row>
+			<ion-row><a href="https://www.themoviedb.org/documentation/api/terms-of-use">TMDB Api Terms</a></ion-row>
+		</ion-card-content>
+	</ion-card>
+
+	<ion-item>About</ion-item>
+	<ion-card>
+		<ion-card-header [ngStyle]="{'background-color': 'black','color': 'white'}">
+			About
+		</ion-card-header>
+		<ion-card-content>
+			Movie Guide
+			<ion-row>Author: Martin M.</ion-row>
+			<ion-row>Email: martsoftsolutionz@gmail.com</ion-row>
+			<ion-row><a href="http://www.martsoft.co.ke/#myapps">Check Website</a></ion-row>
+		</ion-card-content>
+	</ion-card>
+
+	<div padding>
+		<span>Powered By</span>
+		<img src="assets/img/tmdb.png" width="30%" align="right">
+	</div>
+
+	<ion-fab center bottom>
+		<button ion-fab color="secondary" (click)="otherShare()"><ion-icon name="md-share"></ion-icon></button>
+		<!--<ion-fab-list side="top">
+			<button ion-fab color="secondary"><ion-icon name="logo-twitter"></ion-icon></button>
+			<button ion-fab color="primary"><ion-icon name="logo-facebook"></ion-icon></button>
+			<button ion-fab color="light"><ion-icon name="logo-googleplus"></ion-icon></button>
+			<button ion-fab color="dark"><ion-icon name="logo-instagram"></ion-icon></button>
+			<button ion-fab color="danger"><ion-icon name="logo-whatsapp"></ion-icon></button>
+		</ion-fab-list>-->
+	</ion-fab>
+</ion-content>

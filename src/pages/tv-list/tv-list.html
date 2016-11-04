@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+
+    <ion-title>TV Shows</ion-title>
+  </ion-navbar>
+  <ion-toolbar>
+    <ion-searchbar color="primary" [(ngModel)]="searchQuery" (ionInput)="searchTVShows()" (ionClear)="clearFilterTVShows()" placeholder="Search"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding class="tv-list">
+  <!--TV Shows Airing Today -->
+  TV Shows Airing Today
+  <ion-row *ngFor="let i of tvRows;">
+    <ion-col *ngFor="let tv of tvAiringTodayFound | slice:(i*3):(i+1)*3; let t=index" (click)="goToTVDetail(tv)">
+      <template [ngIf]="i<6">
+        <img src="{{baseImageUrl}}{{tv.poster_path}}" onError="this.src='assets/img/noimage.png'">
+        <p>{{tv.name}}<p>
+      </template>
+    </ion-col>
+  </ion-row>
+  <div>
+    Powered By
+    <img src="assets/img/tmdb.png" width="30%" align="right">
+  </div>
+</ion-content>

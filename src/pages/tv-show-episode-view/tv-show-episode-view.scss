@@ -1,0 +1,49 @@
+.tv-show-episode-view {
+      background: #000;
+  color: #DDD;
+
+    p{
+    font-size: 10px;
+    position:relative;
+	z-index:2;
+    color: #DDD;
+      text-align: center;
+    }
+
+    ion-card {
+    margin-top: 5px;
+    overflow: visible;
+ ion-card-content {
+
+      background-color: map-get($colors, primary);
+      color: #FFFFFF;
+      text-align: center;
+      padding-bottom: 5px;
+
+      // img {
+      //   height: 150px;
+      //   width: 150px;
+      //   margin-top: -120px;
+      //   align: left;
+      //   border: solid 4px #FFFFFF;
+      //   display: float;
+      // }
+      p{
+      color: #FFFFFF;
+      font-size: 10px;
+      padding: 1px;
+      position:relative;
+	        z-index:2;
+  }
+ }
+p{
+      color: #000;
+      font-size: 10px;
+      position:relative;
+	        z-index:2;
+  }
+  a{
+    font-size: 10px;
+  }
+ }
+}

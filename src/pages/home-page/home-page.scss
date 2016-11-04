@@ -1,0 +1,33 @@
+.homepage {
+  background: #000;
+//       background: #00dbde; /* fallback for old browsers */
+// background: -webkit-linear-gradient(to bottom, #00dbde, #fc00ff); /* Chrome 10-25, Safari 5.1-6 */
+// background: linear-gradient(to bottom, #00dbde, #fc00ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: #FFF;
+
+
+ p{
+      color: #FFF;
+      font-size: 9px;
+      text-align: center;
+  }
+
+  .divattrib {
+    //background: url("https://www.colourbox.com/preview/2589419-abstract-transparent-background-as-background.jpg");
+    background-color: rgba(255, 255, 255, 0.5);
+}
+}
+
+
+td {padding: 10px; border: 1px #DDD solid;}
+
+attributionimage{
+    width: 10vh;
+    height: 40%;
+}
+
+// Related to https://github.com/driftyco/ionic/issues/5055
+.ios .hide-border .toolbar-background {
+  border-bottom-color: transparent;
+}
+

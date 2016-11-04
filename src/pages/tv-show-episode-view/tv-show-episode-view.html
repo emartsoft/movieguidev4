@@ -1,0 +1,58 @@
+<!--
+  Generated template for the TvShowEpisodeViewPage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+	<ion-navbar>
+		<ion-title>{{title}}: S{{seasonNumber}}E{{episodeNumber}}</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding class="tv-show-episode-view">
+
+	<ion-card>
+		<ion-card-content>
+			<div>Season {{seasonNumber}}: Episode {{episodeNumber}}</div>
+			<div>Name: {{episode_detail.name}}</div>
+			<div>Aired On: {{episode_detail.air_date}}</div>
+		</ion-card-content>
+		<ion-list padding>
+			<img src="{{baseBigImageUrlBig}}{{episode_detail.still_path}}" onError="this.src='assets/img/noimage.png'">
+
+			<p>{{episode_detail.overview}}</p>
+
+			<ion-item-divider [ngStyle]="{'color': 'black', 'font-weight': 'bold'}">Crew</ion-item-divider>
+			<ion-row *ngFor="let i of crewRows;">
+				<ion-col *ngFor="let crew of crews | slice:(i*3):(i+1)*3; let t=index">
+					<template [ngIf]="i<6">
+						<img [ngStyle]="{'max-width': '100px','max-height': '130px','min-height': '130px','border-radius': '46%','border': 'solid 2px #FFFFFF'}" src="{{baseImageUrl}}{{crew.profile_path}}"
+							onError="this.src='assets/img/blank_img.jpg'">
+						<p>{{crew.name}}
+							<p>
+								<p>{{crew.job}}
+									<p>
+										<p>{{crew.department}}
+											<p>
+					</template>
+				</ion-col>
+			</ion-row>
+
+			<ion-item-divider [ngStyle]="{'color': 'black', 'font-weight': 'bold'}">Guest Stars</ion-item-divider>
+			<ion-row *ngFor="let n of guestStarRows;">
+				<ion-col *ngFor="let star of guest_stars | slice:(n*3):(n+1)*3; let t=index">
+					<template [ngIf]="n<6">
+						<img [ngStyle]="{'max-width': '100px','max-height': '130px','min-height': '130px','border-radius': '46%','border': 'solid 2px #FFFFFF'}" src="{{baseImageUrl}}{{star.profile_path}}"
+							(click)="goToCastDetail(star)" onError="this.src='assets/img/blank_img.jpg'">
+						<p>{{star.name}}
+							<p>
+								<p [ngStyle]="{'font-style':'italic'}">{{star.character}}
+									<p>
+					</template>
+				</ion-col>
+			</ion-row>
+		</ion-list>
+	</ion-card>
+
+</ion-content>

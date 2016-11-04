@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar class="hide-border">
+    <button ion-button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button> People
+  </ion-navbar>
+  <ion-toolbar>
+    <ion-searchbar color="primary" [(ngModel)]="searchQuery" (ionInput)="searchPeople()" (ionClear)="clearFilterPeople()" placeholder="Search"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="people">
+  <ion-row *ngFor="let i of peopleRows;">
+    <ion-col *ngFor="let people of peoples | slice:(i*3):(i+1)*3; let t=index">
+      <template [ngIf]="i<6">
+        <img [ngStyle]="{'max-width': '100px','min-height': '150px','border-radius': '30%'}" src="{{baseImageUrl}}{{people.profile_path}}"
+          (click)="goToCastDetail(people)" onError="this.src='assets/img/noimage.png'">
+        <p>{{people.name}}</p>
+      </template>
+    </ion-col>
+  </ion-row>
+  <div>
+    Powered By
+    <img src="assets/img/tmdb.png" width="30%" align="right">
+  </div>
+
+  <ion-fab center bottom>
+    <button ion-fab color="primary"><ion-icon name="ios-hand-outline"></ion-icon></button>
+    <ion-fab-list side="left">
+      <button ion-fab (click)="previousPage()"><ion-icon name="arrow-dropleft"></ion-icon></button>
+    </ion-fab-list>
+    <ion-fab-list side="right">
+      <button ion-fab (click)="nextPage()"><ion-icon name="arrow-dropright" ></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>

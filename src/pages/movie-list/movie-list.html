@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+    <ion-title>Movies</ion-title>
+  </ion-navbar>
+  <ion-toolbar>
+    <ion-searchbar color="primary" [(ngModel)]="searchQuery" (ionInput)="searchMovies()" (ionClear)="clearFilterMovie()" placeholder="Search"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding class="movie-list">
+  <!--Latest Movies in Theatre -->
+  Latest Movies in Theatre
+  <ion-row *ngFor="let i of movieRows;">
+    <ion-col *ngFor="let movie of latestMoviesFound | slice:(i*3):(i+1)*3; let t=index" (click)="goToMovieDetail(movie)">
+      <template [ngIf]="i<6">
+        <img src="{{baseImageUrl}}{{movie.poster_path}}" onError="this.src='assets/img/noimage.png'">
+        <p>{{movie.title}}
+          <p>
+      </template>
+    </ion-col>
+  </ion-row>
+
+  <div>
+    Powered By
+    <img src="assets/img/tmdb.png" width="30%" align="right">
+  </div>
+  <ion-fab center bottom>
+    <button ion-fab color="primary"><ion-icon name="ios-hand-outline"></ion-icon></button>
+    <ion-fab-list side="left">
+      <button ion-fab (click)="previousPage()"><ion-icon name="arrow-dropleft"></ion-icon></button>
+    </ion-fab-list>
+    <ion-fab-list side="right">
+      <button ion-fab (click)="nextPage()"><ion-icon name="arrow-dropright" ></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>

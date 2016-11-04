@@ -1,0 +1,90 @@
+<!--
+  Generated template for the DiscoverPage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+	<ion-navbar>
+		<button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+		<ion-title>Discover</ion-title>
+	</ion-navbar>
+</ion-header>
+<ion-content padding class="discover">
+	<ion-row padding style="background-color: black; color: white;">
+		Discover New Movies & TV Shows
+	</ion-row>
+	<ion-list>
+		<ion-item>
+			<ion-label [ngStyle]="{'color': 'black'}">Discover: </ion-label>
+			<ion-select class="item item-select" interface="action-sheet" [(ngModel)]="media_type" (ionChange)="mediaTypeChanged(media_type)">
+				<ion-option>Movie</ion-option>
+				<ion-option>TV Show</ion-option>
+			</ion-select>
+		</ion-item>
+		<ion-item>
+			<ion-label [ngStyle]="{'color': 'black'}">Year:</ion-label>
+			<ion-select [(ngModel)]="year" (ionChange)="yearChanged(year)">
+				<ion-option *ngFor="let y of years">{{y}}</ion-option>
+			</ion-select>
+		</ion-item>
+		<ion-item>
+			<ion-label [ngStyle]="{'color': 'black'}">Sort By:</ion-label>
+			<ion-select class="item item-select" interface="action-sheet" [(ngModel)]="sort_by" (ionChange)="sortByChanged(sort_by)">
+				<ion-option value="popularity.desc">Popularity Descending</ion-option>
+				<ion-option value="popularity.asc">Popularity Ascending</ion-option>
+				<ion-option value="vote_average.desc">Rating Descending</ion-option>
+				<ion-option value="vote_average.asc">Rating Ascending</ion-option>
+				<ion-option value="primary_release_date.desc">Release Date Descending</ion-option>
+				<ion-option value="primary_release_date.asc">Release Date Ascending</ion-option>
+				<ion-option value="title.asc">Title (A-Z)</ion-option>
+				<ion-option value="title.desc">Title (Z-A)</ion-option>
+			</ion-select>
+		</ion-item>
+		<ion-item>
+			<ion-label [ngStyle]="{'color': 'black'}">Genre:</ion-label>
+			<ion-select class="item item-select" interface="action-sheet" [(ngModel)]="genre" multiple="true" okText="Okay" cancelText="Dismiss"
+				(ionChange)="genreChanged(genre)">
+				<ion-option *ngFor="let x of genres" value="{{x.id}}">{{x.name}}</ion-option>
+			</ion-select>
+		</ion-item>
+	</ion-list>
+
+	<!--<template [ngIf]="isMovie=='true'">-->
+	<ion-row *ngFor="let i of movieRows;">
+		<ion-col *ngFor="let movie of discoveredMovies | slice:(i*4):(i+1)*4; let t=index" (click)="goToMovieDetail(movie)">
+			<template [ngIf]="i<8 && isMovie==true">
+				<img src="{{baseImageUrl}}{{movie.poster_path}}" onError="this.src='assets/img/noimage.png'">
+			</template>
+		</ion-col>
+	</ion-row>
+	<!--</template>-->
+
+
+	<!--<template [ngIf]="isTV=='true'">-->
+	<ion-row *ngFor="let i of tvRows;">
+		<ion-col *ngFor="let tv of discoveredTVShows | slice:(i*4):(i+1)*4; let t=index" (click)="goToTVDetail(tv)">
+			<template [ngIf]="i<8 && isTV==true">
+				<img src="{{baseImageUrl}}{{tv.poster_path}}" onError="this.src='assets/img/noimage.png'">
+			</template>
+		</ion-col>
+	</ion-row>
+	<!--</template>-->
+	<div>
+		Powered By
+		<img src="assets/img/tmdb.png" width="30%" align="right">
+	</div>
+
+	<ion-fab center bottom>
+		<button ion-fab color="primary"><ion-icon name="ios-hand-outline"></ion-icon></button>
+		<ion-fab-list side="left">
+			<button ion-fab (click)="previousPage()"><ion-icon name="arrow-dropleft"></ion-icon></button>
+		</ion-fab-list>
+		<ion-fab-list side="right">
+			<button ion-fab (click)="nextPage()"><ion-icon name="arrow-dropright" ></ion-icon></button>
+		</ion-fab-list>
+	</ion-fab>
+</ion-content>

@@ -1,0 +1,37 @@
+<!--
+  Generated template for the TvShowSimilarsPage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Similar {{types}}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding class="tv-show-similars">
+  Similar {{types}} to {{title}}
+  <ion-row *ngFor="let i of tvRows;">
+    <ion-col *ngFor="let tv of similar | slice:(i*3):(i+1)*3; let t=index" (click)="goToTVDetail(tv)">
+      <template [ngIf]="i<6">
+        <img src="{{baseImageUrl}}{{tv.poster_path}}" onError="this.src='assets/img/noimage.png'">
+        <p>{{tv.name}}
+          <p>
+      </template>
+    </ion-col>
+  </ion-row>
+  <div>
+    Powered By
+    <img src="assets/img/tmdb.png" width="30%" align="right">
+  </div>
+
+  <ion-fab center bottom>
+    <button ion-fab color="primary"><ion-icon name="ios-hand-outline"></ion-icon></button>
+    <ion-fab-list side="left">
+      <button ion-fab (click)="previousPage()"><ion-icon name="arrow-dropleft"></ion-icon></button>
+    </ion-fab-list>
+    <ion-fab-list side="right">
+      <button ion-fab (click)="nextPage()"><ion-icon name="arrow-dropright" ></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>
